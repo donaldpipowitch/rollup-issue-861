@@ -1,3 +1,4 @@
-import myfile from './assets/nested/folder/myfile.txt';
+import './assets/nested/folder/foo.css';
+import bar from './assets/nested/folder/bar.css';
 
-console.log( myfile );
+console.log(bar);

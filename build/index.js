@@ -1,7 +1,4 @@
-'use strict';
+import data from './assets/foo.479beb3e6ad66488.css';
+import data$1 from './assets/bar.708ee0e05af39948.css';
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var data = _interopDefault(require('./assets/myfile.ed345152abf18f8d.txt'));
-
-console.log( data );
+console.log(data$1);

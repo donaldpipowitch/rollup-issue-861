@@ -6,7 +6,7 @@ let external = Object.create( null );
 export default {
 	entry: 'src/index.js',
 	dest: 'build/index.js',
-	format: 'cjs',
+	format: 'es',
 	plugins: [
 		copyStaticAssets({
 			include: 'src/assets/**',

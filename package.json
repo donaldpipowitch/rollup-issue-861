@@ -5,6 +5,6 @@
     "sander": "^0.5.1"
   },
   "scripts": {
-    "build": "rm -rf && rollup -c"
+    "build": "rm -rf build && rollup -c"
   }
 }
