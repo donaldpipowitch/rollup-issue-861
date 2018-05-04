@@ -1,8 +1,8 @@
 {
   "devDependencies": {
-    "rollup": "^0.34.9",
-    "rollup-pluginutils": "^1.5.1",
-    "sander": "^0.5.1"
+    "rollup": "^0.58.2",
+    "rollup-pluginutils": "^2.0.1",
+    "sander": "^0.6.0"
   },
   "scripts": {
     "build": "rm -rf build && rollup -c"
