@@ -1,20 +1,19 @@
 import { relative, resolve } from 'path';
 import assets from './rollup-plugin-assets';
 
-let external = Object.create(null);
+const copiedIds = Object.create(null);
 
 export default {
   input: 'src/index.js',
   output: {
     paths: (id) => {
-      // if this is an external path to an asset, we need to rewrite
-      // the URL to be relative to the bundle, *not* the source
-      if (id.startsWith(resolve('build/assets'))) {
-        let relativeUrl = relative(resolve('build'), id).replace(/\\/g, '/');
-        if (relativeUrl[0] !== '.') relativeUrl = `./${relativeUrl}`;
-        return relativeUrl;
+      // if this id was copied before change it from an absolute path
+      // to a relative path, so it is properly referenced from the output dir
+      if (id in copiedIds) {
+        let relativePath = relative(resolve('build'), id).replace(/\\/g, '/');
+        if (relativePath[0] !== '.') relativePath = `./${relativePath}`;
+        return relativePath;
       }
-
       return id;
     },
     file: 'build/index.js',
@@ -24,11 +23,11 @@ export default {
     assets({
       //   include: 'src/assets/**',
       include: '**/*.(css|png)',
-      dest: 'build/assets',
-      oncopy: (dest) => (external[dest] = true)
+      dest: 'build', // output."dir"
+      oncopy: (copiedId) => (copiedIds[copiedId] = true)
     })
   ],
   external: (id) => {
-    return id in external;
+    return id in copiedIds;
   }
 };
